@@ -53,7 +53,9 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
             LoaderManager loaderManager = getLoaderManager();
             loaderManager.initLoader(GUARDIAN_LOADER_ID, null, this);
+
         } else {
+            mEmptyStateTextView.setVisibility(View.VISIBLE);
             View loadingIndicator = findViewById(R.id.loading_indicator);
             loadingIndicator.setVisibility(View.GONE);
             mEmptyStateTextView.setText(R.string.no_internet_connection);
