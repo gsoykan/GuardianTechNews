@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/guardianGrey"
+    android:layout_margin="8dp">
+
+    <TextView
+        android:id="@+id/web_title_text_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:text="Wandering stars: are Tallinn's digital nomads building the city of the future?"
+        android:textSize="20sp"
+        android:textColor="@color/textBlack"
+        android:fontFamily="monospace"
+        android:textStyle="bold"/>
+    <TextView
+        android:id="@+id/section_name_text_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:text="Cities"
+        android:textSize="18sp"
+        android:textColor="@color/textRed"
+        android:fontFamily="monospace"
+        android:textStyle="bold"/>
+    <TextView
+        android:id="@+id/web_publication_date_text_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:text="2018-05-15T06:15:49Z"
+        android:textSize="16sp"
+        android:textColor="@color/textBlack"
+        android:fontFamily="monospace"
+        android:textStyle="bold"/>
+    <TextView
+        android:id="@+id/contributor_name_text_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:text="Peter Beech"
+        android:textSize="18sp"
+        android:textColor="@color/textRed"
+        android:fontFamily="monospace"
+        android:textStyle="bold"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@color/yellowBack"
+        android:layout_marginTop="4dp"
+        />
+
+</LinearLayout>
