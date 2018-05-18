@@ -4,13 +4,17 @@ import android.app.LoaderManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.Loader;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
@@ -22,13 +26,32 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     private static final String LOG_TAG = MainActivity.class.getName();
 
     private static final String GUARDIAN_REQUEST_URL =
-            "http://content.guardianapis.com/search?tag=technology/technology&page-size=25&page=1&order-by=newest&show-tags=contributor&api-key=17e7216f-032d-4ef0-8a76-e157b8e37a23";
+            "http://content.guardianapis.com/search";
+
 
     private static final int GUARDIAN_LOADER_ID = 1;
 
     private GuardianAdapter adapter;
     private RecyclerView recyclerView;
     private TextView mEmptyStateTextView;
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.action_settings) {
+            Intent settingIntent = new Intent(this, SettingActivity.class);
+            startActivity(settingIntent);
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,7 +88,23 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
     @Override
     public Loader<List<GuardianItem>> onCreateLoader(int i, Bundle bundle) {
-        return new NewsLoader(this, GUARDIAN_REQUEST_URL);
+
+        SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+        String pageSize = sharedPrefs.getString(getString(R.string.settings_page_size_key), getString(R.string.settings_page_size_default));
+        String pageNumber = sharedPrefs.getString(getString(R.string.settings_page_number_key), getString(R.string.settings_page_number_default));
+
+        Uri baseUri = Uri.parse(GUARDIAN_REQUEST_URL);
+
+        Uri.Builder uriBuilder = baseUri.buildUpon();
+
+        uriBuilder.appendQueryParameter("tag", "technology/technology");
+        uriBuilder.appendQueryParameter("page-size", pageSize);
+        uriBuilder.appendQueryParameter("page", pageNumber);
+        uriBuilder.appendQueryParameter("order_by", "newest");
+        uriBuilder.appendQueryParameter("show-tags", "contributor");
+        uriBuilder.appendQueryParameter("api-key", "17e7216f-032d-4ef0-8a76-e157b8e37a23");
+
+        return new NewsLoader(this, uriBuilder.toString());
     }
 
     @Override

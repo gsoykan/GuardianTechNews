@@ -3,4 +3,15 @@
     <string name="no_author">No author data is found</string>
     <string name="no_internet_connection">No internet connection please try again</string>
     <string name="no_item_in_the_list">There are no items in the List</string>
+
+    <string name="settings_menu_item">Settings</string>
+    <string name="settings_title">Guardian News App Settings</string>
+
+    <string name="settings_page_size_label">Page Size</string>
+    <string name="settings_page_size_key" translatable="false">page_size</string>
+    <string name="settings_page_size_default" translatable="false">25</string>
+
+    <string name="settings_page_number_label">Page Number</string>
+    <string name="settings_page_number_key" translatable="false">page_number</string>
+    <string name="settings_page_number_default" translatable="false">1</string>
 </resources>
